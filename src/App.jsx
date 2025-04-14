@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-dom';
 import {
   Container
 } from "reactstrap";
@@ -12,9 +12,8 @@ import { Home } from './components/Home';
 import { Sobre } from "./components/Sobre";
 
 import { Provider } from "react-redux";
-import { store } from "./store";
-import { useEffect } from "react";
 import { Login } from "./components/Login";
+import { store } from "./store";
 
 
 
@@ -26,19 +25,6 @@ export function App() {
     <AppContent />
       </Router>
     </Provider>
-    // <Router>
-    //   <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
-    //     <Header/>
-    //     <Container className="flex-grow-1">
-    //       <Routes>
-    //         <Route path="/login" element={<Login />} />
-    //         <Route path="/home" element={<Home/>} />
-    //         <Route path="/pets" element={<Sobre />} />
-    //       </Routes>
-    //     </Container>
-    //     <Footer />
-    //   </div>
-    // </Router>
   );
 }
 
@@ -52,15 +38,15 @@ function AppContent() {
     <div className="d-flex flex-column" style={{minHeight: "100vh"}}>
          <Header/>
          <Container className="flex-grow-1">
-           <Routes>
-             <Route path="/login" element={<Login/>} />
-             <Route path="/home" element={<Home/>} />
-             <Route path="/pets" element={<Sobre />} />
-           </Routes>
+         <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/pets" element={<Sobre />} />
+        </Routes>
+
          </Container>
          <Footer />
        </div>    
   )
 }
-
-// export default App
