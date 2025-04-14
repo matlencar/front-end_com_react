@@ -1,25 +1,18 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:1337/api';
-
-
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: 'https://reqres.in/api',
 });
 
-
-export const loginStrapi = async ({ identifier, password }) => {
+export const loginReqres = async ({ email, password }) => {
   try {
-    const response = await apiClient.post('/auth/local', {
-      identifier,
-      password,
-    });
-    return response.data;
+    const response = await apiClient.post('/login', { email, password });
+    return response.data; // { token: '...' }
   } catch (error) {
-    console.error('Erro no login Strapi:', error.response?.data || error.message);
+    console.error('Erro no login ReqRes:', error.response?.data || error.message);
     throw error;
   }
-};
+}
 
 export const getProtectedData = async (token, endpoint) => {
   try {
