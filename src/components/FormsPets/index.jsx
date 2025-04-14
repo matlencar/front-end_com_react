@@ -10,13 +10,13 @@ export function FormsPets() {
   useEffect(() => {
     async function fetchPets() {
       try {
-        const response = await fetch("https://api.npoint.io/449641724ca9c26251e6");
+        const response = await fetch("https://api.npoint.io/14eb307afc0fc465fe53");
        
         const data = await response.json();
         console.log("Dados da API:", data);
 
-        if (data.pets && Array.isArray(data.pets)) {
-          setTipo(data.pets);
+        if (data.tipo && Array.isArray(data.tipo)) {
+          setTipo(data.tipo);
         } else {
           throw new Error("Formato de resposta inválido");
         }
@@ -33,7 +33,7 @@ export function FormsPets() {
   useEffect(() => {
     async function fetchSexo() {
       try {
-        const response = await fetch("https://api.npoint.io/a704c7a731e42e5fd9ac");
+        const response = await fetch("https://api.npoint.io/06f96c609e9b2faf0d59");
 
         const data = await response.json()
 

@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+
+
+
 import './Login.css';
+import { loginAsync } from '../../auth/authSlice';
 
 export function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate('/home');
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const resultAction = await dispatch(loginAsync({email, password}));
+      if(loginAsync.fulfilled.match(resultAction)){
+          navigate('/home');
+      }else{
+          console.log("Falha no Login: ", resultAction.error);
+      }
+  }
 
   return (
     <div className="login-container">
@@ -21,8 +35,8 @@ export function Login() {
         </p>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
