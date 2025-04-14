@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { login as LoginService } from "../service/apiService";
-import { loginReqres as loginService } from '../service/strapiApiService';
+// import { login as LoginService } from "../service/apiService";
+// import { loginReqres as loginService } from '../service/strapiApiService';
 
 const tokenFromStorage = localStorage.getItem('token');
 
